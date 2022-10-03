@@ -96,7 +96,6 @@ class caya_downloader
         $header = array();
         foreach ($log as $entry) {
             $log_entry = json_decode($entry["message"]);
-            file_put_contents('logfile', print_r($log_entry, true) . PHP_EOL, FILE_APPEND);
             if (isset($log_entry->message->method) && $log_entry->message->method == "Network.requestWillBeSent") {
                 if (preg_match("/^https:\/\/api.getcaya.com/", $log_entry->message->params->request->url)) {
                     if (isset($log_entry->message->params->request->headers->authorization)) {
